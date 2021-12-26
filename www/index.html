@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>TensorFlow.js Tutorial</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" crossorigin="anonymous">
+</head>
+
+<body>
+    <main>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-6">
+                    <input id="image-selector" class="form-control border-0" type="file" onchange="PreviewImage();" />
+                </div>
+                <div class="col-6">
+                    <button id="predict-button" class="btn btn-dark float-right" onclick="getPred()">Predict</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="ml-3">Image</h2>
+                    <img id="selected-image" style="width: 224px; height: 224px;" class="ml-3" />
+                </div>
+                <div class="col-6">
+                    <h2>Class</h2>
+                    <div id="class-result"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+    const img = new Image()
+    img.crossOrigin = "anonymous";
+
+    MODEL_PATH = 'model/model.json';
+
+    function ClearOutput() {
+        $("#class-result").empty();
+    }
+
+    function PreviewImage() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("image-selector").files[0]);
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("selected-image").src = oFREvent.target.result;
+            ClearOutput();
+        };
+    };
+
+    async function getPred() {
+        ClearOutput();
+
+        // Convert image
+        const DOMImage = document.getElementById('selected-image')
+        const inputImageTensor = tf.browser.fromPixels(DOMImage)
+
+        // Load model
+        const model = tf.loadLayersModel(MODEL_PATH);
+
+        // Then make prediction
+        model.then(function (res) {
+            const predictionTensor = res.predict(inputImageTensor.expandDims(0));
+            let value = predictionTensor.dataSync()[0];
+            let className = value < 0 ? 'photo' : 'image';
+            console.log(predictionTensor.dataSync());
+
+            // Show result
+            $('#class-result').append('<p>' + className + '</p>')
+        });
+    };
+
+</script>
