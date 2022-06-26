@@ -1,0 +1,7 @@
+pandas
+pycocotools
+scipy
+scikit-learn
+matplotlib
+seaborn
+tflite-model-maker

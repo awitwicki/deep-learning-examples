@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+  deep-learning-playground:
+    build: .
+    container_name: deep-learning-playground-container
+    volumes:
+      - .:/tf/deep-learning-playground
+    ports:
+      - "8888:8888"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
