@@ -8,8 +8,7 @@ Deep learning TensorFlow sample models
 3. [image_augmentation](/image_augmentation.ipynb) - Notebook with images augmentation. [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/awitwicki/deep-learning-examples/blob/main/image_augmentation.ipynb)
 
 
-<!--
-4. [resistor_detector_classifier](/image_photo_classifier.ipynb) - model which detects resistors and classify them. [Live demo](https://awitwicki.github.io/deep-learning-examples/resistor_detector_classifier/) or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/awitwicki/deep-learning-examples/blob/main/resistor_detector_classifier.ipynb) -->
+4. [resistor_classifier](/image_photo_classifier.ipynb) - model which detects resistors and classify them. [Live demo](https://awitwicki.github.io/deep-learning-examples/resistor_classifier/) or [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/awitwicki/deep-learning-examples/blob/main/resistor_classifier.ipynb)
 
 
 ## Jupyter notebook with gpu support
