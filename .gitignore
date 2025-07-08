@@ -132,3 +132,5 @@ dmypy.json
 _*
 
 dataset/*
+.idea
+.DS_Store
